@@ -1,0 +1,29 @@
+.form > input {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.mt {
+  margin-top: 1em;
+}
+.mb {
+  margin-bottom: 1em;
+}
+.ml {
+  margin-left: 1em;
+}
+.mr {
+  margin-right: 1em;
+}
+
+.block {
+  display: block !important;
+}
+
+.inline-block {
+  display: inline-block !important;
+}
+
+.inline {
+  display: inline !important;
+}

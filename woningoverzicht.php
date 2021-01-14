@@ -1,4 +1,5 @@
-<?php require "classes/Table.php";
+<?php
+include "includes/Table.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -11,42 +12,32 @@
 	<!-- Bootstrap CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-	<title>Woningoverzicht</title>
+	<title>Woningoverzichtbs
+	</title>
 </head>
 
-<body>
-	<?php include "dbConfig.php"; ?>
-	<h3 class="">Woningoverzicht</h3>
-	<table class="table table-striped">
-		<tr>
-			<th>idHuis</th>
-			<th>aantalVerdiepingen</th>
-			<th>aantalKamers</th>
-			<th>breedte</th>
-			<th>hoogte</th>
-			<th>diepte prijs </th>
-			<th>isKoopwoning</th>
-			<th>Status_idStatus</th>
-			<th>Woonwijk_idWoonwijk</th>
-		</tr>
-		<?php
+<body>>
+	<th>Status_idStatus</th>
+	<th>Woonwijk_idWoonwijk</th>
+	</tr>
+	<?php
 
-		try {
-			$stmt = $conn->prepare("SELECT * FROM Huis, Woonwijk, WoningSoort WHERE  ");
-			$stmt->execute();
+	try {
+		$stmt = $conn->prepare("SELECT * FROM Huis, Woonwijk, WoningSoort  ");
+		$stmt->execute();
 
-			// set the resulting array to associative
-			$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+		// set the resulting array to associative
+		$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-			foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $key => $value) {
-				echo $key;
-				echo $value;
-			}
-		} catch (PDOException $e) {
-			echo "Error: " . $e->getMessage();
+		foreach (new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $key => $value) {
+			echo $key;
+			echo $value;
 		}
-		$conn = null;
-		?>
+	} catch (PDOException $e) {
+		echo "Error: " . $e->getMessage();
+	}
+	$conn = null;
+	?>
 	</table>
 
 

@@ -1,12 +1,13 @@
 <?php
+include "../paths.php";
 include "../dbConfig.php";
+include $includes . "preparedSelect.php";
+include $includes . "preparedInsert.php";
 
 if (isset($_POST['form'])) {
-  $sql = "INSERT INTO Woonwijk (woonwijkNaam) VALUES (?)";
-  $stmt = $conn->prepare($sql);
-  $params = array_values($_POST['form']);
-  $stmt->execute($params);
-  echo 'Het is gelukt';
+  $form = $_POST['form'];
+  prepared_insert($conn, "Woonwijk", $form);
+  echo 'woonwijk is ingevuld';
 } else {
   echo 'formulier is nog niet volledig ingevoerd <br><a href="../aanmakenWijk.php">Terug</a>';
 }
