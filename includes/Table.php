@@ -9,7 +9,7 @@ class TableRows extends RecursiveIteratorIterator
 
   function current()
   {
-    return "<td style='width:150px;'>" . parent::current() . "</td>";
+    return "<tr><td style='width:150px;'>" . parent::current() . "</td></tr>";
   }
 
   function beginChildren()
