@@ -8,36 +8,41 @@ include "includes/preparedSelect.php";
 include "layout/header.php";
 include "layout/nav.php";
 
-$huizenRaw = prepared_select($conn, "SELECT aantalVerdiepingen,
-aantalKamers,
-breedte,
-hoogte,
-diepte,
-prijs_m2,
-isKoopwoning,
-WoningStatus_idWoningStatus,
-Woonwijk_idWoonwijk,
-WoningSoort_idWoningSoort From Huis");
-
-$woonwijkenRaw = prepared_select($conn, "SELECT woonwijkNaam FROM Huis, Woonwijk WHERE Huis.Woonwijk_idWoonwijk = Woonwijk.idWoonwijk");
-
-$woonwijken = array_map(function ($naam) {
-	return $naam['woonwijkNaam'];
-}, $woonwijkenRaw,);
+$huizen = prepared_select($conn, "SELECT * FROM Huis, Woonwijk, WoningSoort, WoningStatus 
+WHERE Huis.WoningStatus_idWoningStatus = WoningStatus.idWoningStatus
+AND Huis.Woonwijk_idWoonwijk = Woonwijk.idWoonwijk
+AND Huis.WoningSoort_idWoningSoort = WoningSoort.idWoningSoort");
 
 ?>
 
 <body>
 	<div class="container">
-		<table class="table table-striped" style="overflow:scroll;">
-			<?php
-			foreach ($huizenRaw as $huis) {
-				foreach ($huis as $key => $value) {
-					echo "<tr><th>" . $key  . "</th><td>" . $value  . "</td></tr>";
-				}
+		<?php
+
+		foreach ($huizen as $huis) {
+			echo '<table class="table table-striped" style="overflow:scroll;margin-bottom:2em;">';
+			echo '<tr><td class="h2">Woonwijk</td><td class="h2">' . $huis['woonwijkNaam'] . '</td></tr>';
+			echo "<tr><td>ID Huis</td><td>" . $huis['idHuis'] . "</td></tr>";
+			echo "<tr><td>Aantal Verdiepingen</td><td>" . $huis['aantalVerdiepingen'] . "</td></tr>";
+			echo "<tr><td>aantalKamers</td><td>" . $huis['aantalKamers'] . "</td></tr>";
+			echo "<tr><td>breedte</td><td>" . $huis['breedte'] . "</td></tr>";
+			echo "<tr><td>hoogte</td><td>" . $huis['hoogte'] . "</td></tr>";
+			echo "<tr><td>diepte</td><td>" . $huis['diepte'] . "</td></tr>";
+			echo "<tr><td>Prijs per m<sup>2<sup></td><td>&euro;" . $huis['prijs_m2'] . "</td></tr>";
+
+			if ($huis['isKoopwoning'] == 0) {
+				echo '<tr><td colspan="2">Huur</td></tr>';
+			} else {
+				echo '<tr><td colspan="2">Koop</td></tr>';
 			}
-			?>
-		</table>
+
+			echo "<tr><td>Soort</td><td>" . $huis['woningSoortNaam'] . "</td></tr>";
+			echo "<tr><td>Status</td><td>" . $huis['woningStatusNaam'] . "</td></tr>";
+			echo '</table>';
+		}
+
+		?>
+
 	</div>
 
 	<!-- Option 1: Bootstrap Bundle with Popper -->

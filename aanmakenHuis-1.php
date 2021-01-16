@@ -1,5 +1,6 @@
 <?php
 include "layout/header.php";
+include "layout/nav.php";
 include "dbConfig.php";
 include "includes/preparedInsert.php";
 include "includes/preparedSelect.php";

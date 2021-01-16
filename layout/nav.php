@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Makelaar</a>
+    <a class="navbar-brand" href="woningoverzicht.php">Makelaar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,8 +14,8 @@
             Huizen beheren
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Aanmaken Huis</a></li>
-            <li><a class="dropdown-item" href="#">Wijzigen Huis</a></li>
+            <li><a class="dropdown-item" href="aanmakenHuis-1.php">Aanmaken Huis</a></li>
+            <li><a class="dropdown-item" href="wijzigenHuis-1.php">Wijzigen Huis</a></li>
           </ul>
         </li>
       </ul>

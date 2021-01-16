@@ -32,3 +32,8 @@ select {
 .inline {
   display: inline !important;
 }
+
+td:nth-child(1) {
+  width: 10em;
+  font-weight: bold;
+}
