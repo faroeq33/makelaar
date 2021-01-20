@@ -1,32 +1,11 @@
 <?php
-include "layout/header.php";
-include "layout/nav.php";
-include "dbConfig.php";
-include "includes/preparedInsert.php";
-include "includes/preparedSelect.php";
+include "/makelaar/config.php";
 
 $wijkenRaw = prepared_select($conn, "SELECT * FROM Woonwijk");
 
-function getWijk($thing)
-{
-  return [
-    'id' => $thing['idWoonwijk'],
-    'naam' => $thing['woonwijkNaam']
-  ];
-};
-
 $wijken = array_map("getWijk", $wijkenRaw);
 
-
 $soortRaw = prepared_select($conn, "SELECT * FROM WoningSoort");
-
-function getSoort($thing)
-{
-  return [
-    'id' => $thing['idWoningSoort'],
-    'naam' => $thing['woningSoortNaam']
-  ];
-};
 
 $soorten = array_map("getSoort", $soortRaw);
 
@@ -43,7 +22,7 @@ $soorten = array_map("getSoort", $soortRaw);
       <select class="form-control" name="form[Woonwijk_idWoonwijk]" id="">
         <?
     foreach ($wijken as $value) {
-      echo '<option value="' . $value['id'] . '"> ' . $value['naam'] .  ' </option>';
+      echo '<option value="' . $value['id'] . '"> ' . $value['woonwijkNaam'] .  ' </option>';
     }
     ?>
       </select>
@@ -73,14 +52,10 @@ $soorten = array_map("getSoort", $soortRaw);
         </select>
       </div>
 
-      <label for="woningStatusNaam" class="block mt">Status</label>
-      <select name="form[WoningStatus_idWoningStatus]" id="" class="mb form-control">
-        <option value="1">Flat</option>
-        <option value="2">Apartment</option>
-        <option value="3">Gezinshuis</option>
-        <option value="4">Rijwoning</option>
-      </select>
-      <input class="btn btn-primary" type="submit" value="Aanmaken">
     </form>
   </div>
+
+  <?php
+
+  ?>
 </body>

@@ -1,7 +1,7 @@
 <?php
-function prepared_select($connection, $sql)
+function prepared_select($pdo, $sql)
 {
-  $stmt = $connection->prepare($sql);
+  $stmt = $pdo->prepare($sql);
   $stmt->execute();
 
   // set the resulting array to associative
