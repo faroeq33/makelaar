@@ -1,5 +1,6 @@
 <?php
-include "/makelaar/config.php";
+include "../../config.php";
+
 
 $wijkenRaw = prepared_select($conn, "SELECT * FROM Woonwijk");
 
