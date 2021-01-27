@@ -3,11 +3,11 @@ include "../../config.php";
 include $rootFolder . "helpers/helpers.php";
 
 
+
 $wijken = prepared_select($conn, "SELECT * FROM `Woonwijk`
 ");
-
-
 $soorten = prepared_select($conn, "SELECT * FROM WoningSoort");
+$statussen = prepared_select($conn, "SELECT * FROM WoningStatus");
 
 
 ?>
@@ -21,38 +21,51 @@ $soorten = prepared_select($conn, "SELECT * FROM WoningSoort");
       <label for="woonwijkNaam" class="block">Woonwijk</label>
 
 
-      <select class="form-control" name="form[Woonwijk_idWoonwijk]" id="">
+      <select class="form-control" name="Woonwijk_idWoonwijk" id="">
         <?
-    foreach ($wijken as $value) {
-      echo '<option value="' . $value['idWoonwijk'] . '"> ' . $value['woonwijkNaam'] .  ' </option>';
+    foreach ($wijken as $wijk) {
+      echo '<option value="' . $wijk['idWoonwijk'] . '"> ' . $wijk['woonwijkNaam'] .  ' </option>';
     }
     ?>
       </select>
 
-      <input type="number" class="form-control" placeholder="AantalVerdiepingen" name="form[aantalVerdiepingen]" id="" required>
-      <input class="form-control" type="number" placeholder="AantalKamers" name="form[aantalKamers]" id="" required>
-      <input class="form-control" type="number" placeholder="Breedte" name="form[breedte]" id="" required>
-      <input class="form-control" type="number" placeholder="Hoogte" name="form[hoogte]" id="" required>
-      <input class="form-control" type="number" placeholder="Diepte" name="form[diepte]" id="" required>
-      <input class="form-control" type="number" placeholder="Prijs per m2" name="form[prijs_m2]" id="" required>
+      <input type="number" class="form-control" placeholder="AantalVerdiepingen" name="aantalVerdiepingen" id="" required>
+      <input class="form-control" type="number" placeholder="AantalKamers" name="aantalKamers" id="" required>
+      <input class="form-control" type="number" placeholder="Breedte" name="breedte" id="" required>
+      <input class="form-control" type="number" placeholder="Hoogte" name="hoogte" id="" required>
+      <input class="form-control" type="number" placeholder="Diepte" name="diepte" id="" required>
+      <input class="form-control" type="number" placeholder="Prijs per m2" name="prijs_m2" id="" required>
 
       <div class="form-check">
-        <input value="0" class="" type="radio" name="form[isKoopwoning]" id="">
-        <label for="form[isKoopwoning]">Huur</label>
+        <input value="0" class="" type="radio" name="isKoopwoning" id="">
+        <label for="isKoopwoning">Huur</label>
 
-        <input value="1" type="radio" name="form[isKoopwoning]" id="">
-        <label for="form[isKoopwoning]">Koop</label>
+        <input value="1" type="radio" name="isKoopwoning" id="">
+        <label for="isKoopwoning">Koop</label>
       </div>
 
       <div class="form-group">
-        <label for="" class="block mt">Status</label>
-        <select class="form-control" name="form[WoningSoort_idWoningSoort]" id="" class="mb">
-          <option value="1">TeHuur</option>
-          <option value="2">Te Koop</option>
-          <option value="3">Verhuurd</option>
-          <option value="4">Verkocht onder voorbehoud</option>
+        <label for="WoningStatus_idWoningStatus" class="block mt">Status</label>
+        <select class="form-control" name="WoningStatus_idWoningStatus" id="" class="mb">
+          <? 
+          foreach ($statussen as $status) { 
+            echo '<option value="' . $status['idWoningStatus'] . '"> ' . $status['woningStatusNaam'] .  ' </option>'; 
+            } 
+          ?>
         </select>
       </div>
+
+      <div class="form-group">
+        <label for="" class="block mt">Soort</label>
+        <select class="form-control" name="WoningSoort_idWoningSoort" id="" class="mb">
+          <? 
+          foreach ($soorten as $soort) { 
+            echo '<option value="' . $soort['idWoningSoort'] . '"> ' . $soort['woningSoortNaam'] .  ' </option>'; 
+            } 
+          ?>
+        </select>
+      </div>
+
       <input type="submit" value="Opslaan">
     </form>
   </div>
