@@ -48,7 +48,13 @@ AND Huis.WoningSoort_idWoningSoort = WoningSoort.idWoningSoort");
 
 			echo '<form action="../update/wijzigenHuis-1.php" method="GET">';
 			echo '<input type="hidden" name="idHuis" value="' . $idHuis . '">';
-			echo '<tr><td><input type="submit" value="Wijzigen" class="btn btn-info"></td><td>' . '</td></tr>';
+			echo '<tr>';
+			echo '<td>';
+			echo '<input type="submit" value="Wijzigen" class="btn btn-warning">';
+			echo '<input type="submit" value="Verwijderen" class="btn btn-danger m-3">';
+			echo '</td>';
+			echo '</tr>';
+
 			echo "</form>";
 			echo '</table>';
 		}

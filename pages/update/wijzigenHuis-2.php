@@ -1,28 +1,34 @@
   <?php
-  include "/opt/lampp/htdocs/makelaar-php/config.php";
-  $form = $_POST['form'];
+  include "../../config.php";
+  include $rootFolder . "helpers/helpers.php";
 
-  $idHuis = $form['idHuis'];
-  $dinges = prepared_update($conn, "Huis", $idHuis, $form);
+  $form = [
+    'aantalVerdiepingen' => $_POST['aantalVerdiepingen'],
+    'aantalKamers' => $_POST['aantalKamers'],
+    'breedte' => $_POST['breedte'],
+    'hoogte' => $_POST['hoogte'],
+    'diepte' => $_POST['diepte'],
+    'prijs_m2' => $_POST['prijs_m2'],
+    'isKoopwoning' => $_POST['isKoopwoning'],
+    'Woonwijk_idWoonwijk' => $_POST['Woonwijk_idWoonwijk'],
+    'WoningSoort_idWoningSoort' => $_POST['WoningSoort_idWoningSoort'],
+    'WoningStatus_idWoningStatus' => $_POST['WoningStatus_idWoningStatus'],
+  ];
 
-  echo "<pre>";
-  var_dump($dinges);
-  echo "</pre>";
-  die('end of script');
-
-  // geef een bevestiging dat de velden zijn gerwijzigd
-  // haal de last insert id op 
-
+  $huis = prepared_update(
+    $conn,
+    "UPDATE Huis SET 
+aantalVerdiepingen=:aantalVerdiepingen,
+aantalKamers=:aantalKamers,
+breedte=:breedte,
+hoogte=:hoogte,
+diepte=:diepte,
+prijs_m2=:prijs_m2,
+isKoopwoning=:isKoopwoning,
+WoningSoort_idWoningSoort=:WoningSoort_idWoningSoort,
+WoningStatus_idWoningStatus=:WoningStatus_idWoningStatus
+  WHERE Woonwijk_idWoonwijk=:Woonwijk_idWoonwijk
+  ",
+    $form
+  );
   ?>
-
-  <body>
-    <div class="container">
-
-      <h2 class="mt ml" style="margin-left:0.5em">Wijzig huis ID:
-        <b>
-        </b>toe
-      </h2>
-
-
-
-  </body>
