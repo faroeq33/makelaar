@@ -3,12 +3,12 @@ include "../../config.php";
 include $rootFolder . "helpers/helpers.php";
 
 
-// $wijkenRaw = prepared_select($conn, "SELECT * FROM Woonwijk WHERE woonwijk.id");
+$wijken = prepared_select($conn, "SELECT * FROM `Woonwijk`
+");
 
 
-$soortRaw = prepared_select($conn, "SELECT * FROM WoningSoort");
+$soorten = prepared_select($conn, "SELECT * FROM WoningSoort");
 
-$soorten = array_map("getSoort", $soortRaw);
 
 ?>
 
@@ -20,10 +20,11 @@ $soorten = array_map("getSoort", $soortRaw);
     <form action="aanmakenHuis-2.php" method="POST" class="ml form">
       <label for="woonwijkNaam" class="block">Woonwijk</label>
 
+
       <select class="form-control" name="form[Woonwijk_idWoonwijk]" id="">
         <?
     foreach ($wijken as $value) {
-      echo '<option value="' . $value['id'] . '"> ' . $value['woonwijkNaam'] .  ' </option>';
+      echo '<option value="' . $value['idWoonwijk'] . '"> ' . $value['woonwijkNaam'] .  ' </option>';
     }
     ?>
       </select>
@@ -52,7 +53,7 @@ $soorten = array_map("getSoort", $soortRaw);
           <option value="4">Verkocht onder voorbehoud</option>
         </select>
       </div>
-
+      <input type="submit" value="Opslaan">
     </form>
   </div>
 
