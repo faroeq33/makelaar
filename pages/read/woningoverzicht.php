@@ -1,5 +1,6 @@
 <?php
 require "/opt/lampp/htdocs/makelaar-php/config.php";
+require $rootFolder . "helpers/helpers.php";
 
 $huizen = prepared_select($conn, "SELECT * FROM Huis, Woonwijk, WoningSoort, WoningStatus 
 WHERE Huis.WoningStatus_idWoningStatus = WoningStatus.idWoningStatus

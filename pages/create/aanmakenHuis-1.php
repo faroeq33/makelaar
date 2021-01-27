@@ -1,10 +1,10 @@
 <?php
 include "../../config.php";
+include $rootFolder . "helpers/helpers.php";
 
 
-$wijkenRaw = prepared_select($conn, "SELECT * FROM Woonwijk");
+// $wijkenRaw = prepared_select($conn, "SELECT * FROM Woonwijk WHERE woonwijk.id");
 
-$wijken = array_map("getWijk", $wijkenRaw);
 
 $soortRaw = prepared_select($conn, "SELECT * FROM WoningSoort");
 

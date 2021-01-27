@@ -1,5 +1,6 @@
   <?php echo
   require "/opt/lampp/htdocs/makelaar-php/config.php";
+  require $rootFolder . "helpers/helpers.php";
 
   $formField = $_GET['idHuis'];
 
