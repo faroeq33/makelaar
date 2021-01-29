@@ -15,7 +15,6 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="/makelaar-php/pages/create/aanmakenHuis-1.php">Aanmaken Huis</a></li>
-            <li><a class="dropdown-item" href="/makelaar-php/pages/pages/update/wijzigenHuis-1.php">Wijzigen Huis</a></li>
           </ul>
         </li>
       </ul>
