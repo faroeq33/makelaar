@@ -1,8 +1,8 @@
 <?php
 
-function prepared_update($connection, $sql, array $form)
+function prepared_update($connection, $query, array $form)
 {
-  $instance = $connection->prepare($sql);
+  $instance = $connection->prepare($query);
 
   foreach ($form as $key => $value) {
     $instance->bindValue($key, $value);
@@ -11,9 +11,9 @@ function prepared_update($connection, $sql, array $form)
   $instance->execute();
 }
 
-function prepared_insert($connection, $sql, array $form)
+function prepared_insert($connection, $query, array $form)
 {
-  $instance = $connection->prepare($sql);
+  $instance = $connection->prepare($query);
 
   foreach ($form as $key => $value) {
     $instance->bindValue($key, $value);
@@ -24,9 +24,9 @@ function prepared_insert($connection, $sql, array $form)
 
 // Let op als je een where statement gebruikt dat je wel een array met de waardes van het formulier meegeeft!!!
 
-function prepared_select($connection, $sql, array $form = null)
+function prepared_select($connection, $query, array $form = null)
 {
-  $instance = $connection->prepare($sql);
+  $instance = $connection->prepare($query);
 
   if (!is_null($form)) {
     foreach ($form as $key => $value) {
