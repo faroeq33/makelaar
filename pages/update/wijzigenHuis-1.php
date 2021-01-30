@@ -33,7 +33,7 @@
         </b>toe
       </h2>
 
-      <form action="wijzigenHuis-2.php" method="POST" class="ml form">
+      <form action="/makelaar-php/pages/read/woningoverzicht.php" method="POST" class="ml form">
         <label for="Woonwijk_idWoonwijk" class="block">Woonwijk</label>
 
         <select class="form-control" name="Woonwijk_idWoonwijk" id="">

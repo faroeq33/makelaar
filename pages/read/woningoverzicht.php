@@ -2,16 +2,63 @@
 require "/opt/lampp/htdocs/makelaar-php/config.php";
 require $rootFolder . "helpers/helpers.php";
 
+// Als gebruikers van het wijzigen formulier komen
+if (!empty($_POST)) {
+	$updatedData = [
+		'idHuis' => $_POST['idHuis'],
+		'aantalVerdiepingen' => $_POST['aantalVerdiepingen'],
+		'aantalKamers' => $_POST['aantalKamers'],
+		'breedte' => $_POST['breedte'],
+		'hoogte' => $_POST['hoogte'],
+		'diepte' => $_POST['diepte'],
+		'prijs_m2' => $_POST['prijs_m2'],
+		'isKoopwoning' => $_POST['isKoopwoning'],
+		'Woonwijk_idWoonwijk' => $_POST['Woonwijk_idWoonwijk'],
+		'WoningSoort_idWoningSoort' => $_POST['WoningSoort_idWoningSoort'],
+		'WoningStatus_idWoningStatus' => $_POST['WoningStatus_idWoningStatus'],
+	];
+
+	$insertHuis = prepared_update(
+		$conn,
+		"UPDATE Huis SET 
+	aantalVerdiepingen=:aantalVerdiepingen,
+	aantalKamers=:aantalKamers,
+	breedte=:breedte,
+	hoogte=:hoogte,
+	diepte=:diepte,
+	prijs_m2=:prijs_m2,
+	isKoopwoning=:isKoopwoning,
+	Woonwijk_idWoonwijk=:Woonwijk_idWoonwijk,
+	WoningSoort_idWoningSoort=:WoningSoort_idWoningSoort,
+	WoningStatus_idWoningStatus=:WoningStatus_idWoningStatus
+	WHERE idHuis=:idHuis
+	",
+		$updatedData
+	);
+
+	//bekijk of na een successvolle query een boodschap kan meegeven.
+	$success = "De wijzigingen zijn opgeslagen!";
+}
+
+// De wijzigen van het formulier uit wijzigigen-1.php doorvoeren naar de database
+
+
 $huizen = prepared_select($conn, "SELECT * FROM Huis, Woonwijk, WoningSoort, WoningStatus 
 WHERE Huis.WoningStatus_idWoningStatus = WoningStatus.idWoningStatus
 AND Huis.Woonwijk_idWoonwijk = Woonwijk.idWoonwijk
 AND Huis.WoningSoort_idWoningSoort = WoningSoort.idWoningSoort");
+
+
+
 
 ?>
 
 <body>
 	<div class="container">
 		<?php
+		if (isset($success)) {
+			echo '<div class="alert alert-success">' . $success . '</div>';
+		}
 
 		foreach ($huizen as $huis) {
 			$idHuis = $huis['idHuis'];
