@@ -38,3 +38,14 @@ function prepared_select($connection, $query, array $form = null)
 
   return $instance->fetchall(PDO::FETCH_ASSOC);
 }
+
+function prepared_delete($connection, $query, array $form)
+{
+  $instance = $connection->prepare($query);
+
+  foreach ($form as $key => $value) {
+    $instance->bindValue($key, $value);
+  }
+
+  $instance->execute();
+}

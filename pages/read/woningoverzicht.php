@@ -93,16 +93,20 @@ AND Huis.WoningSoort_idWoningSoort = WoningSoort.idWoningSoort");
 			echo "<tr><td>Soort</td><td>{$woningSoortNaam}</td></tr>";
 			echo "<tr><td>Status</td><td>{$woningStatusNaam}</td></tr>";
 
-			echo '<form action="../update/wijzigenHuis-1.php" method="GET">';
-			echo '<input type="hidden" name="idHuis" value="' . $idHuis . '">';
 			echo '<tr>';
 			echo '<td>';
+			echo '<form action="/makelaar-php/pages/update/wijzigenHuis-1.php" method="GET">';
+			echo '<input type="hidden" name="idHuis" value="' . $idHuis . '">';
 			echo '<input type="submit" value="Wijzigen" class="btn btn-warning">';
-			echo '<input type="submit" value="Verwijderen" class="btn btn-danger m-3">';
+			echo "</form>";
+			echo '<form action="/makelaar-php/pages/delete/verwijderenHuisFormulier.php" method="GET">';
+			echo '<input type="hidden" name="idHuis" value="' . $idHuis . '">';
+			echo '<input type="submit" value="Verwijderen" class="btn btn-danger">';
 			echo '</td>';
 			echo '</tr>';
 
-			echo "</form>";
+
+
 			echo '</table>';
 		}
 
