@@ -5,6 +5,8 @@
 
   $formField = $_GET['idHuis'];
 
+  //Verwerking wordt gedaan in woningoverzicht.php
+
   $huisResult = prepared_select($conn, "SELECT * FROM Huis, Woonwijk, WoningSoort, WoningStatus WHERE idHuis =" . $formField . " AND Huis.WoningStatus_idWoningStatus = WoningStatus.idWoningStatus AND Huis.Woonwijk_idWoonwijk = Woonwijk.idWoonwijk AND Huis.WoningSoort_idWoningSoort = WoningSoort.idWoningSoort");
   $wijkenResult = prepared_select($conn, "SELECT * FROM Woonwijk");
 
